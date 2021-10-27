@@ -1,0 +1,14 @@
+{
+  "name": "q2-frontend",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev --port 1234 --host",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "next",
+    "svelte": "^3.42.6"
+  },
+  "type": "module"
+}
