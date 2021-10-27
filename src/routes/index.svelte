@@ -1,23 +1,23 @@
 <script>
-import { user } from "../state.js"
-import { get } from "../api.js"
+  import { user } from "../state.js"
+  import { get } from "../api.js"
 
-let netid = "";
+  let netid = "";
 
-async function login() {
-    $user.netid = netid;
-    netid = "";
-    $user.loggedIn = true;
-    $user.role = "ta";
-    try {
-        const response = await get("q2/user-role/", { netid: $user.netid });
-        if (response) {
-            user.role = response.role;
-        }
-    } catch (error) {
-        console.log("error", error);
-    }
-}
+  async function login() {
+      $user.netid = netid;
+      netid = "";
+      $user.loggedIn = true;
+      $user.role = "ta";
+      try {
+          const response = await get("q2/user-role/", { netid: $user.netid });
+          if (response) {
+              user.role = response.role;
+          }
+      } catch (error) {
+          console.log("error", error);
+      }
+  }
 </script>
 
 <h1>Welcome to the CS 142 Help Queue</h1>

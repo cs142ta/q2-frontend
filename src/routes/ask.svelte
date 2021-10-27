@@ -1,28 +1,27 @@
 <script>
-import { onDestroy } from "svelte";
+  import { get } from "../api.js";
+  import { user } from "../state.js";
 
-import { get } from "../api.js";
-import { user } from "../state.js";
+  // const rooms = ["1119", "1121", "1102"];
 
-// const rooms = ["1119", "1121", "1102"];
+  let type = "lab";
+  let room = "1119";
+  let question = "";
+  let readFAQ = false;
 
-let type = "lab";
-let room = "1119";
-let question = "";
-let readFAQ = false;
-
-async function submitQuestion() {
-  try {
-    const response = await get("q2/queue-join", {
-      netid: $user.netid,
-      question: question,
-      course_id: "cs142",
-    });
-    question = "";
-  } catch (error) {
-    console.log("Submit error", error)
+  async function submitQuestion() {
+    try {
+      const response = await get("q2/queue-join", {
+        netid: $user.netid,
+        question: question,
+        course_id: "cs142",
+      });
+      question = "";
+    } catch (error) {
+      console.log("Submit error", error)
+    }
   }
-}
+
 </script>
 
 <h1>Ask a question:</h1>
