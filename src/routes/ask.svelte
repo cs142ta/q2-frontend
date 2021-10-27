@@ -11,7 +11,7 @@
 
   async function submitQuestion() {
     try {
-      const response = await get("q2/queue-join", {
+      const response = await get("queue-join", {
         netid: $user.netid,
         question: question,
         course_id: "cs142",

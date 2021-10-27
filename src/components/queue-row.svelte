@@ -3,18 +3,23 @@
   import { user } from "../state.js";
 
   export let data = {
-    name: "",
-    question: "",
+    student_name: "",
+    question_text: "",
     waiting: true,
+    question_id: 0,
   };
 
   async function claimHelp() {
     try {
-      const response = await get("q2/claim_question", {
-        question_id: 0,
+      const response = await get("claim-question", {
+        question_id: data.question_id,
         netid: $user.netid,
         course_id: "cs142",
       });
+
+      if (response.success) {
+        data.waiting = false;
+      }
     } catch (error) {
       console.log("stop error");
     }
@@ -22,8 +27,8 @@
 
   async function stopHelp() {
     try {
-      const response = await get("q2/end_question", {
-        question_id: 0,
+      const response = await get("end-question", {
+        question_id: data.question_id,
         netid: $user.netid,
       });
     } catch (error) {
@@ -33,8 +38,8 @@
 </script>
 
 <div class="queue-row">
-  <span class="text" title={data.question}><strong>{data.name}:</strong> {data.question}</span>
-  <!-- <span class="text" title={data.question}>{data.question}</span>-->
+  <span class="text" title={data.question_text}><strong>{data.student_name}:</strong> {data.question_text}</span>
+  <!-- <span class="text" title={data.question_text}>{data.question_text}</span>-->
   <!-- <span class="time">00:00</span> -->
   <span class="action">
     {#if data.waiting}

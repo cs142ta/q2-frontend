@@ -7,32 +7,14 @@
   import QueueRow from "../components/queue-row.svelte";
 
   // the help queue
-  let queue = [
-    {
-      name: "Nathan Craddock",
-      question: "Can you please help me!",
-      waiting: true,
-    },
-    {
-      name: "Confused Student",
-      question: "How do you make an array of vectors? Are there scalars?",
-      waiting: true,
-    },
-    {
-      name: "Rando Student",
-      question: "Is there a text length limit to these questions? I'm going to try to find out. My question starts all the way back on the day of my birth when",
-      waiting: false,
-    },
-  ];
+  let queue = [];
 
   async function updateQueue() {
     try {
-      const response = await get("q2/get_waiting_questions", {
+      queue = await get("get-waiting-questions", {
         netid: $user.netid,
         course_id: "cs142",
       });
-
-      queue = response;
     } catch (error) {
       console.log("queue update failure");
     }

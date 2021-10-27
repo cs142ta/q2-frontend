@@ -1,15 +1,17 @@
 <script>
-import "../app.css";
-import { user } from "../state.js";
+  import "../app.css";
+  import { user } from "../state.js";
 </script>
 
 <!-- Shared header -->
 <nav>
-    <a href="/">Q2</a>
-    {#if $user.loggedIn}
-        <a href="/ask">Ask</a>
-        {#if $user.role === "ta"}<a href="/queue">Queue</a>{/if}
-    {/if}
+  <a href="/">Q2</a>
+  {#if $user.role === "student" || $user.role === "ta"}
+    <a href="/ask">Ask</a>
+  {/if}
+  {#if $user.role === "ta"}
+    <a href="/queue">Queue</a>
+  {/if}
 </nav>
 
 <!-- Page content -->
@@ -17,13 +19,13 @@ import { user } from "../state.js";
 
 <!-- shared styles -->
 <style>
-nav a {
+  nav a {
     padding-right: 1em;
     color: black;
     text-decoration: none;
-}
+  }
 
-nav a:hover {
+  nav a:hover {
     text-decoration: underline;
-}
+  }
 </style>

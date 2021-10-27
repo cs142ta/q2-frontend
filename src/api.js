@@ -2,7 +2,7 @@
 // for managing the connection to the q2 api
 
 // the base url of the api
-const url = "http://192.168.14.49:8080/";
+const url = "http://192.168.14.49:8088/";
 
 export async function get(endpoint, data) {
     const apiUrl = url + endpoint;
