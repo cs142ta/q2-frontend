@@ -10,6 +10,8 @@
   let readFAQ = false;
 
   async function submitQuestion() {
+    if (question === "") return;
+
     try {
       const response = await get("queue-join", {
         netid: $user.netid,
@@ -23,6 +25,10 @@
   }
 
 </script>
+
+<svelte:head>
+  <title>Ask</title>
+</svelte:head>
 
 <h1>Ask a question:</h1>
 
@@ -52,7 +58,7 @@
   -->
   <textarea bind:value={question} placeholder="Enter your question"></textarea><br>
   <span>
-    <input type=submit value="Submit" on:click|preventDefault={submitQuestion}>
+    <input type=submit value="Submit" on:click|preventDefault={submitQuestion} disabled={question === ""}>
     <!--<input type=checkbox bind:checked={readFAQ}>-->
   </span>
 

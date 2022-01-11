@@ -26,12 +26,22 @@
     $user.netid = "";
     $user.role = "";
   }
+
+  async function handleEnter(e) {
+    if (e.key === "Enter" && netid !== "") {
+      await login();
+    }
+  }
 </script>
+
+<svelte:head>
+  <title>Q2</title>
+</svelte:head>
 
 <h1>Welcome to the CS 142 Help Queue</h1>
 
 <label for="netid">Enter your netid</label>
-<input id="netid" type="text" bind:value={netid} disabled={$user.loggedIn}>
+<input id="netid" type="text" bind:value={netid} disabled={$user.loggedIn} on:keypress={handleEnter}>
 
 {#if $user.loggedIn}
   <input type="submit" value="Logout" on:click={logout}>

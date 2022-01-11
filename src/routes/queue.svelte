@@ -25,6 +25,10 @@
   onDestroy(() => clearInterval(interval));
 </script>
 
+<svelte:head>
+  <title>Queue</title>
+</svelte:head>
+
 <h1>Queue</h1>
 
 <div id="queue">
